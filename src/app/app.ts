@@ -18,6 +18,7 @@ import { RecipeModel } from './models';
 })
 export class App {
   protected recipe = signal<RecipeModel>(MOCK_RECIPES[0]);
+  protected servings = signal(1);
 
   protected displaySpaghettiCarbonara() {
     this.recipe.set(MOCK_RECIPES[0]);
@@ -25,6 +26,14 @@ export class App {
 
   protected displayCapreseSalad() {
     this.recipe.set(MOCK_RECIPES[1]);
+  }
+
+  protected incrementServings() {
+    this.servings.update(s => s + 1)
+  }
+
+  protected decrementServings() {
+    this.servings.update(s => s - 1)
   }
 }
 
