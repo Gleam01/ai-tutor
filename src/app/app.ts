@@ -7,6 +7,8 @@
  */
 import {Component, signal} from '@angular/core';
 import {RouterOutlet} from '@angular/router';
+import { MOCK_RECIPES } from './mock-recipes';
+import { RecipeModel } from './models';
 
 @Component({
   selector: 'app-root',
@@ -15,15 +17,14 @@ import {RouterOutlet} from '@angular/router';
   styleUrl: './app.css',
 })
 export class App {
-  protected title = signal('My Recipe Box');
-  protected recipeOne = signal('Spaghetti Carbonara');
-  protected recipeTwo = signal('Caprese Salad');
+  protected recipe = signal<RecipeModel>(MOCK_RECIPES[0]);
 
-  protected showRecipeOne() {
-    console.log(`${this.recipeOne()} selected!`);
+  protected displaySpaghettiCarbonara() {
+    this.recipe.set(MOCK_RECIPES[0]);
   }
 
-  protected showRecipeTwo() {
-    console.log(`${this.recipeTwo()} selected!`);
+  protected displayCapreseSalad() {
+    this.recipe.set(MOCK_RECIPES[1]);
   }
 }
+
