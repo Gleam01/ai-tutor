@@ -16,4 +16,14 @@ import {RouterOutlet} from '@angular/router';
 })
 export class App {
   protected title = signal('My Recipe Box');
+  protected recipeOne = signal('Spaghetti Carbonara');
+  protected recipeTwo = signal('Caprese Salad');
+
+  protected showRecipeOne() {
+    console.log(`${this.recipeOne()} selected!`);
+  }
+
+  protected showRecipeTwo() {
+    console.log(`${this.recipeTwo()} selected!`);
+  }
 }
