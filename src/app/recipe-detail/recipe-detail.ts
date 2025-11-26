@@ -1,6 +1,9 @@
-import { Component, signal, computed, input } from '@angular/core';
+import { Component, signal, computed, input, inject } from '@angular/core';
 import { Ingredient, RecipeModel } from '../models';
 import { FormsModule } from '@angular/forms';
+import { Recipe } from '../recipe';
+import { ActivatedRoute } from '@angular/router';
+import { toSignal } from '@angular/core/rxjs-interop';
 
 @Component({
   selector: 'app-recipe-detail',
@@ -9,7 +12,11 @@ import { FormsModule } from '@angular/forms';
   styleUrl: './recipe-detail.css',
 })
 export class RecipeDetail {
-  recipe = input.required<RecipeModel>();
+  private readonly recipeService = inject(Recipe);
+  private readonly route = inject(ActivatedRoute);
+  private recipeId = signal<number>(+(toSignal(this.route.params)()?.['id']));
+
+  recipe = signal<RecipeModel>(this.recipeService.getRecipeById(this.recipeId()));
   protected servings = signal(1);
   protected adjustedIngredients = computed<Ingredient[]>(() => {
     return this.recipe().ingredients.map(ingredient => {

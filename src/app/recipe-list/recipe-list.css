@@ -1,0 +1,27 @@
+nav {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 1rem;
+
+    a {
+        &,
+        &:visited {
+            color: var(--text-color);
+            text-decoration: none;
+            font-weight: 300;
+            font-size: .938rem;
+        }
+
+        &:hover,
+        &:active,
+        &.active {
+            background: linear-gradient(currentColor 0 0) bottom left/ var(--underline-width, 0%) 0.2rem no-repeat;
+            --underline-width: 100%;
+            padding-bottom: .25rem;
+            color: var(--primary);
+            transition: background-size 0.5s;
+        }
+    }
+}

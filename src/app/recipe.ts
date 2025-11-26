@@ -9,4 +9,8 @@ export class Recipe {
   getRecipesList(): RecipeModel[] {
     return MOCK_RECIPES;
   }
+
+  getRecipeById(id: number): RecipeModel {
+    return MOCK_RECIPES.find((recipe) => recipe.id === id)!;
+  }
 }

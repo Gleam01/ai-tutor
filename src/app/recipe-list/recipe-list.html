@@ -1,3 +1,6 @@
-<app-recipe-detail [recipe]="recipe()"></app-recipe-detail>
-<button (click)="displaySpaghettiCarbonara()">Switch To Spaghetti Carbonara</button>
-<button (click)="displayCapreseSalad()">Switch To Caprese Salad</button>
+<nav>
+    @for(recipe of recipes(); track recipe.id) {
+        <a [routerLink]="['/recipes', recipe.id]">{{recipe.name}}</a>
+    }
+</nav>
+<router-outlet></router-outlet>
