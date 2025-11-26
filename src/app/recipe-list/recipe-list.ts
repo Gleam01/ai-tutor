@@ -1,7 +1,7 @@
-import { Component, signal } from '@angular/core';
-import { MOCK_RECIPES } from '../mock-recipes';
+import { Component, inject, signal } from '@angular/core';
 import { RecipeModel } from '../models';
 import { RecipeDetail } from '../recipe-detail/recipe-detail';
+import { Recipe } from '../recipe';
 
 @Component({
   selector: 'app-recipe-list',
@@ -10,13 +10,15 @@ import { RecipeDetail } from '../recipe-detail/recipe-detail';
   styleUrl: './recipe-list.css',
 })
 export class RecipeList {
-  protected recipe = signal<RecipeModel>(MOCK_RECIPES[0]);
+  private readonly recipeService = inject(Recipe);
+  private recipesList = this.recipeService.getRecipesList()
+  protected recipe = signal<RecipeModel>(this.recipesList[0]);
 
   protected displaySpaghettiCarbonara() {
-    this.recipe.set(MOCK_RECIPES[0]);
+    this.recipe.set(this.recipesList[0]);
   }
 
   protected displayCapreseSalad() {
-    this.recipe.set(MOCK_RECIPES[1]);
+    this.recipe.set(this.recipesList[1]);
   }
 }
