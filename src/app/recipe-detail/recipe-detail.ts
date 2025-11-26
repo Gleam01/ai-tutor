@@ -4,10 +4,11 @@ import { FormsModule } from '@angular/forms';
 import { Recipe } from '../recipe';
 import { ActivatedRoute } from '@angular/router';
 import { toSignal } from '@angular/core/rxjs-interop';
+import { MatButtonModule } from '@angular/material/button';
 
 @Component({
   selector: 'app-recipe-detail',
-  imports: [FormsModule],
+  imports: [FormsModule, MatButtonModule],
   templateUrl: './recipe-detail.html',
   styleUrl: './recipe-detail.css',
 })
