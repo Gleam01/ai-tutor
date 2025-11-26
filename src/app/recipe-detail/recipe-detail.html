@@ -4,6 +4,8 @@
     <p>{{recipe().description}}</p>
     <p>Servings: {{servings()}}</p>
     <pre>{{ adjustedIngredients() | json }}</pre>
-    <button (click)="incrementServings()">+</button>
-    <button (click)="decrementServings()">-</button>
+    <div class="controls-container">
+        <button (click)="incrementServings()">+</button>
+        <button (click)="decrementServings()">-</button>
+    </div>
   </div>
