@@ -1,10 +1,10 @@
 import { Component, signal, computed, input } from '@angular/core';
 import { Ingredient, RecipeModel } from '../models';
-import { JsonPipe } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-recipe-detail',
-  imports: [JsonPipe],
+  imports: [FormsModule],
   templateUrl: './recipe-detail.html',
   styleUrl: './recipe-detail.css',
 })
@@ -18,6 +18,12 @@ export class RecipeDetail {
         quantity: ingredient.quantity * this.servings()
       }
     })
+  });
+  searchTerm = signal('');
+  filteredIngredients = computed<Ingredient[]>(() => {
+    return this.adjustedIngredients().filter(ingredient => {
+      return ingredient.name.toLowerCase().includes(this.searchTerm().toLowerCase());
+    });
   });
 
   protected incrementServings() {

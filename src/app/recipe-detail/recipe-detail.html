@@ -10,8 +10,9 @@
     </h1>
     <p>{{recipe().description}}</p>
     <p>Servings: {{servings()}}</p>
+    <input class="form-control" type="text" [(ngModel)]="searchTerm" placeholder="Search Ingredients">
     <ul>
-        @for(ingredient of adjustedIngredients(); track ingredient.name){
+        @for(ingredient of filteredIngredients(); track ingredient.name){
             <li>{{ingredient.name}}: {{ingredient.quantity}} {{ingredient.unit}}</li>
         }
     </ul>
