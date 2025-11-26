@@ -1,6 +1,7 @@
 <nav>
+    <a [routerLink]="['/add-recipe']" routerLinkActive="active">Add Recipe</a>
     @for(recipe of recipes(); track recipe.id) {
-        <a [routerLink]="['/recipes', recipe.id]">{{recipe.name}}</a>
+        <a [routerLink]="['/recipes', recipe.id]" routerLinkActive="active">{{recipe.name}}</a>
     }
 </nav>
 <router-outlet></router-outlet>

@@ -1,0 +1,18 @@
+<h1>Add a new recipe</h1>
+<form [formGroup]="recipeForm" (ngSubmit)="onSubmit()">
+    <div class="form-group">
+        <label for="name">Name</label>
+        <input type="text" [class]="{'error': recipeForm.get('name')?.touched && recipeForm.get('name')?.hasError('required')}" formControlName="name">
+        @if(recipeForm.get('name')?.touched && recipeForm.get('name')?.hasError('required')){
+            <span class="error">Name is required</span>
+        }
+    </div>
+    <div class="form-group">
+        <label for="description">Description</label>
+        <textarea rows="4" id="description" [class]="{'error': recipeForm.get('description')?.touched && recipeForm.get('description')?.hasError('required')}" type="text" formControlName="description"></textarea>
+        @if(recipeForm.get('description')?.touched && recipeForm.get('description')?.hasError('required')){
+            <span class="error">Description is required</span>
+        }
+    </div>
+    <button type="submit" [disabled]="recipeForm.invalid">Add</button>
+</form>
